@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace app\admin\controller;
@@ -57,11 +58,11 @@ class Dept extends Base
     public function update(): void
     {
         $params = _validate('put.sys_dept.true', 'id|role');
-        $user = $this->model->where('id', $params['id'])->findOrEmpty();
-        if ($user->isEmpty()) {
+        $dept = $this->model->where('id', $params['id'])->findOrEmpty();
+        if ($dept->isEmpty()) {
             _result(['code' => 403, 'msg' => '部门不存在'], _getEnCode());
         }
-        $user->save($params);
+        $dept->save($params);
         _result(['code' => 200, 'msg' => '更新成功'], _getEnCode());
     }
 
